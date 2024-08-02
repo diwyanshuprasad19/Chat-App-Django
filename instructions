@@ -1,0 +1,9 @@
+# to activate the virtual enviroment
+pyenv activate myenv
+
+# rds settings
+databse name:postgres
+user:postgres
+password:qwerty12345
+url:chat.cjmsqs4o62fa.us-east-1.rds.amazonaws.com
+port:5432
