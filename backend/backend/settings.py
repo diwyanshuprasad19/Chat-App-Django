@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 
     # Apps
     'accounts',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,49 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Auth User
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# for logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'django_debug.log'),  # File to save logs
+            'formatter': 'verbose',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'myapp': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+
+# Cognito 
+# settings.py
+
+AWS_REGION = 'us-east-1'  # e.g., 'us-east-1'
+COGNITO_USER_POOL_ID = 'us-east-1_Osu7Zy8lO'
+COGNITO_USER_POOL_CLIENT_ID = '4thguanjgv506c672oh2cnp4qd'
+COGNITO_USER_POOL_CLIENT_SECRET = '1pleval2ivafevbqu9lvi34p61rhmul61kb38rfhajmrhvmrodes'  # Optional, if you use client secret
+COGNITO_TOKEN_SIGN_URL = 'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Osu7Zy8lO/.well-known/jwks.json'
