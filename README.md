@@ -5,4 +5,4 @@ This is Djangoo App where we can Chat, Video Call, Audio Call and File sharing u
 Deployment done on AWS ec2 and for database used Aws Rds
 
 # Authentication and authorisation
-Aws Cognito
+Outh 2.0
